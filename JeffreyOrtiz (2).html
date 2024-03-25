@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<head>
+  <title>Anna Dowlin</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap" rel="stylesheet">
+  <style>
+  img {
+        margin: 40px 0px 0px 0px;
+      border: 7px solid black;
+      border-radius: 20px;
+      width: 250px;
+    }
+    body {
+      text-align: center;
+      background: url("https://static.showit.co/800/cTiHN-iqSBuzBnvpQWnVZQ/153105/ash_m-7-5.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      font-family: ;
+    }
+    p {
+      font-size: 30px;
+      font-family: helvetica, sans-serif;
+      color: Blue;
+    font-family: 'Dancing Script', cursive;
+      
+      
+    }
+    input {
+      border: 0;
+      padding: 10px;
+      font-size: 18px;
+      font-family: 'Exo 2', sans-serif;
+    }
+    input[type="submit"] {
+      background: Yellow;
+      color: Green;
+      font-family: 'Lobster', sans-serif;
+      
+    
+        
+    }
+  </style>
+</head>
+<body>
+  
+  <img src="https://www.bravotv.com/sites/bravo/files/2021/08/mdla-season-13-fredrik-eklund-headshot.jpg">
+  
+  <p>Hey! I'm John a real estate agent in Teaxs. Who are you?</p>
+<input placeholder="Your name" id="Name">
+  <input type="email" placeholder="Your email" id="Email">
+  <input type="submit" id="submit">
+</body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAG5EaBcFSRs-1_64cjy5atrB8_ztVxikY",
+    authDomain: "project-9e921.firebaseapp.com",
+    projectId: "project-9e921",
+    storageBucket: "project-9e921.appspot.com",
+    messagingSenderId: "682008016363",
+    appId: "1:682008016363:web:ff977fff64828b8e5815ae"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+const Name = document.querySelector("#Name") 
+const Email = document.querySelector("#Email")
+document.querySelector('#submit').addEventListener('click', Submit)
+function Submit() {
+  const timestamp = buildTimestamp()
+  
+  set(ref(db, timestamp), {
+	  Name: Name.value,
+      email: Email.value,
+  });
+
+  Name.value = ""
+  Email.value = ""
+}
+function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+  
+	  return timestamp
+	}
+	
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+
+  
+</script>
