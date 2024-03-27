@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #232323;
+  background-color: Grey;
+}
+div {
+  height: 250px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+  font-family: 'Shadows Into Light', cursive;
+  
+}
+h1 {
+ font-family: 'Gloria Hallelujah', cursive;
+  text-align: center;
+  font-size: 62px;
+  color: Green;
+  margin: 60px 0 0 0;
+  
+}
+h2 {
+  text-align: center;
+  color: Green;
+  margin: 0px 0 70px 0;
+  font-family: 'Homemade Apple', cursive;
+font-family: 'Pacifico', cursive;
+font-size: 35px;
+  
+}
+p {
+  color: rgba(255,255,255,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(0,0,200,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+  color: yellow;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+input {
+	font-size: 22px;
+}
+
+
+.first{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkMuuqMV2jYeAalX93SeS42eFxUWg3l4dIbw&usqp=CAU");
+}
+.second{
+  background-image: url("https://www.tasteofhome.com/wp-content/uploads/2018/09/brick-oven-pizza.jpg");
+}
+.dessert{
+  background-image: url("https://www.slashgear.com/img/gallery/the-10-best-selling-game-consoles-of-all-time-ranked/intro-1692815719.jpg");
+}
+.price {
+  float: right;
+  color: yellow;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+    
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Keron Marketplace</h1>
+<h2>To buy and sell</h2>
+
+<div class="first">
+    <input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Used maple wood table <span class="price">$35</span><br /> 
+        <small>Hey do you need to buy a table? Then you came at the right place buy this used Maple Wood Table for only 35$ I would call this a steal for anyone who buys this! So what are you wating for, buy this this Maple wood Table today! </small></p>
+</div>
+
+<div class="second">
+    <input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Brick Oven for Pizza <span class="price">$75</span><br />
+  <small>Hey Everyone! Buy this brick oven today! For the low low price of only 75$. People this is what we call a steal! Buy it today!</small></p>
+</div>
+  
+<div class="dessert">
+    <input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Used Video Games for the Xbox 1 <span class="price">$12</span><br />
+  <small>My son has bought a new Xbox so he doesn't need these video games and I won't use them. So here I am to sell them for only 12$. So there are like 30 games that I will sell in total.</small></p>
+</div>
+
+<br><br>
+<input placeholder="Your name" id="Name">
+  <input type="email" placeholder="Your email" id="Email">
+  
+  <input type="submit" id="submit">
+  <br><br>
+  
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+ 
+</script>
+  
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBVLUDkLAZSyNogeYzjF4dRl9-6V41ufQw",
+    authDomain: "project3-b83af.firebaseapp.com",
+    databaseURL: "https://project3-b83af-default-rtdb.firebaseio.com",
+    projectId: "project3-b83af",
+    storageBucket: "project3-b83af.appspot.com",
+    messagingSenderId: "339783151081",
+    appId: "1:339783151081:web:890cc4a51b88321a3aef78"
+  };
+
+  // Initialize Firebase
+   const app = initializeApp(firebaseConfig);
+   const db = getDatabase(app);
+
+ 
+ 
+
+   const Name = document.querySelector("#Name") 
+   const Email = document.querySelector("#Email")
+   document.querySelector('#submit').addEventListener('click', Submit)
+   const prices = document.querySelectorAll(".price") 
+   
+   const quantities = document.querySelectorAll(".quantities")
+
+   const itemsList = ["table", "oven", "games"]
+    
+   function Submit() {
+     const timestamp = buildTimestamp()
+      let total = 0 
+ 	  let cart = { }
+      
+ 	  for  (let i=0; i<quantities.length; i=i+1) {
+ 	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			  let price = prices[i].innerHTML.replace('$', '')
+			  total = total + quantities[i].value * price 
+ 	  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+
+ 	  	}
+
+ 	  	quantities[i].value = ""
+ 	  }
+
+       
+  
+     set(ref(db, timestamp), {
+   	     Name: Name.value,
+         email: Email.value,
+         cart: cart,
+		  totalPrice: total,
+		  paid: "not yet",
+     });
+
+     Name.value = ""
+     Email.value = ""
+		  
+   }
+   
+   
+   function buildTimestamp() {
+   	  const now = new Date();
+   	  let timestamp = now.getFullYear().toString() + "/";
+   	  //const month = now.toLocaleString('default', { month: 'long' });
+
+   	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+   	  month = month.toString()
+   	  month = addLeadingZero(month)
+   	  timestamp += month + "/"; 
+
+   	  let date = now.getDate().toString()
+   	  date = addLeadingZero(date)
+   	  timestamp += date + "/";
+
+   	  let hours = now.getHours().toString()
+   	  hours = addLeadingZero(hours)
+   	  timestamp += hours + ":";
+
+   	  let minutes = now.getMinutes().toString()
+   	  minutes = addLeadingZero(minutes)
+   	  timestamp += minutes + ":";
+
+   	  let seconds = now.getSeconds().toString()
+   	  seconds = addLeadingZero(seconds)
+   	  timestamp += seconds;
+  
+   	  return timestamp
+   	}
+	
+   	function addLeadingZero(units) {
+   		if (units.length < 2) {
+   			units = "0" + units
+   		}
+   		return units
+   	}
+</script>
+  
+</body>
